@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>User Authentication System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Authentication System</h2>
+    
+    <div id="registerForm">
+        <h3>Register</h3>
+        <div class="form-group">
+            <label>Username:</label>
+            <input type="text" id="regUsername">
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" id="regPassword">
+        </div>
+        <button onclick="register()">Register</button>
+    </div>
+
+    <hr>
+
+    <div id="loginForm">
+        <h3>Login</h3>
+        <div class="form-group">
+            <label>Username:</label>
+            <input type="text" id="loginUsername">
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" id="loginPassword">
+        </div>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="message"></div>
+
+    <script>
+        function showMessage(text, isError = false) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = 'message ' + (isError ? 'error' : 'success');
+        }
+
+        // async 表示异步函数，await 表示等待异步操作完成
+        async function register() {
+            // 从 UI 中获取用户名和密码
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+
+            try {
+                // 发送 POST 请求到服务器，请求路径为 /api/register
+                // await 表示等待 fetch 请求完成
+                const response = await fetch('/api/register', {
+                    method: 'POST', // 请求方法
+                    headers: {
+                        'Content-Type': 'application/json' // 请求头
+                    },
+                    body: JSON.stringify({ username, password }) // 请求体
+                });
+
+                const data = await response.json(); // 将响应体转换为 JSON 对象
+                
+                if (response.ok) {
+                    showMessage(data.message); // 显示成功消息
+                } else {
+                    showMessage(data.message, true); // 显示错误消息
+                }
+            } catch (error) {
+                showMessage('Registration failed', true);
+            }
+        }
+
+        // 同理，登录函数
+        async function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showMessage(data.message);
+                } else {
+                    showMessage(data.message, true);
+                }
+            } catch (error) {
+                showMessage('Login failed', true);
+            }
+        }
+    </script>
+</body>
+</html>
