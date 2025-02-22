@@ -74,6 +74,8 @@ app.post('/api/login', (req, res) => {
 });
 
 // 启动服务器，监听 3000 端口
+// 这里是绑定了所有的 IP 地址，所以如果服务器 3000 端口是开放的话，那么从外部也可以通过 3000 端口访问服务器
+// 如果是使用 反向代理 的话，那么只绑定 127.0.0.1 即可
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
