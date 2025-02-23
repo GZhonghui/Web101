@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My First Vue App</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ message }}</h1>
+    <p>{{ add(x, y) }}</p>
+  </div>
+
+  <script>
+    const { createApp } = Vue // Vue 3
+
+    // 创建 Vue 应用
+    const app = createApp({
+      el: '#app', // 只会影响 id 为 app 的元素
+      // 数据
+      data() { return {
+        message: 'Welcome to Vue!',
+        version: '3.0.0',
+        x: 1,
+        y: 2
+      }},
+      // 方法
+      methods: {
+        output() {
+          this.message = 'Hello, Vue!'
+        },
+        add(x, y) {
+          return x + y
+        }
+      }
+    })
+
+    app.mount('#app') // 挂载到 id 为 app 的元素
+  </script>
+</body>
+</html>
