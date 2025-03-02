@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue & HTML</title>
+  <style>
+    body, .button-primary, #comment-input {
+      font-family: "SimSun", "STSong", serif;
+    }
+    .button-primary, #comment-input {
+      font-size: 16px;
+    }
+    .button-primary {
+      padding: 5px 10px;
+    }
+    #comment-input {
+      padding: 8px;
+      width: 512px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1><a href="https://vuejs.org/">Vue</a> & HTML <u>模板工程</u></h1>
+    <br>
+    <div id="content">
+      <h2>匆匆</h2>
+      <p>作者：<strong>朱自清</strong></p>
+      <p>
+        燕子去了，有再来的时候；杨柳枯了，有再青的时候；桃花谢了，有再开的时候。
+        但是，聪明的，你告诉我，我们的日子为什么一去不复返呢？
+        是有人偷了他们罢：那是谁？又藏在何处呢？是他们自己逃走了罢：现在又到了哪里呢？
+      </p>
+      <img
+        src="images/Uru.png"
+        alt="我最爱的歌手 うる"
+      >
+      <p>2025年3月2日 @地球</p>
+      <hr>
+      <div id="comment" style="margin-bottom: 10px;">
+        <input type="text" id="comment-input" placeholder="コメントを入力してください">
+      </div>
+      <div id="buttons">
+        <button class="button-primary">いいね！</button>
+        <button class="button-primary">送信する</button>
+        <button class="button-primary">Dislike</button>
+      </div>
+      <p id="notice">通知：空</p>
+    </div>
+  </div>
+  <div id="info">
+    <p style="font-size: 20px;">
+      192.168.1.1
+    </p>
+  </div>
+</body>
+</html>
