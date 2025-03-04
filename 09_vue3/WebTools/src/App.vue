@@ -19,9 +19,9 @@ function increase() {
 // 普通变量
 let poster_index = 0;
 const poster_paths = [
-  '/public/poster/1.png',
-  '/public/poster/2.png',
-  '/public/poster/3.png'
+  '/poster/1.png',
+  '/poster/2.png',
+  '/poster/3.png'
 ]
 
 // 响应式变量
